@@ -11,7 +11,6 @@
   <meta name="author" content="Prav TV" />
 
   <!-- Open Graph / Social Sharing -->
-  <!-- TODO: Replace og:image with your actual cover image URL -->
   <meta property="og:title" content="Prav TV – Official Site" />
   <meta property="og:description" content="Official website of Prav TV" />
   <meta property="og:type" content="website" />
@@ -477,8 +476,6 @@
     }
     .about-image-wrap:hover img { filter: grayscale(0%); }
 
-    .about-content {}
-
     .about-bio {
       font-size: 1.05rem;
       color: var(--text-muted);
@@ -525,7 +522,7 @@
     }
 
     /* ============================================================
-       UPCOMING RELEASE / COUNTDOWN (NEW SECTION)
+       UPCOMING RELEASE / COUNTDOWN
        ============================================================ */
     #upcoming {
       padding: var(--section-pad) 0;
@@ -617,20 +614,30 @@
     }
 
     /* ============================================================
-       VIDEO SHOWCASE
+       VIDEO SHOWCASE (DYNAMIC PLATFORM LISTS)
        ============================================================ */
     #videos {
       padding: var(--section-pad) 0;
       background: var(--bg-secondary);
     }
 
-    .section-header {
+    .platform-section {
+      margin-bottom: 4rem;
+    }
+    .platform-header {
       display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: clamp(36px, 5vw, 64px);
-      flex-wrap: wrap;
-      gap: 20px;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      font-family: var(--font-display);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .platform-header i {
+      font-size: 1.5rem;
+      color: var(--accent-1);
     }
 
     .video-grid {
@@ -653,7 +660,7 @@
 
     .video-embed-wrap {
       position: relative;
-      padding-top: 56.25%; /* 16:9 ratio */
+      padding-top: 56.25%; /* 16:9 for YouTube, TikTok/Instagram may adjust automatically */
       overflow: hidden;
     }
     .video-embed-wrap iframe {
@@ -662,6 +669,22 @@
       width: 100%;
       height: 100%;
       border: none;
+    }
+
+    /* TikTok / Instagram embeds might be blockquotes, style them to fit */
+    .tiktok-embed-wrap, .instagram-embed-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 450px;
+      background: #000; /* dark background for consistency */
+      overflow: hidden;
+    }
+    .tiktok-embed-wrap blockquote,
+    .instagram-embed-wrap blockquote {
+      margin: 0 auto;
+      max-width: 100%;
+      min-width: 300px;
     }
 
     .video-info {
@@ -682,16 +705,11 @@
       letter-spacing: 0.1em;
     }
 
-    /* Hidden videos for "load more" */
-    .video-card.hidden {
-      display: none;
-    }
-
-    #load-more-btn {
+    .load-more-btn {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: 48px auto 0;
+      margin: 32px auto 0;
       padding: 14px 44px;
       border: 1px solid var(--border);
       background: transparent;
@@ -702,7 +720,7 @@
       font-family: var(--font-body);
       transition: all 0.3s;
     }
-    #load-more-btn:hover { border-color: var(--accent-1); color: var(--accent-1); }
+    .load-more-btn:hover { border-color: var(--accent-1); color: var(--accent-1); }
 
     /* ============================================================
        SOCIAL FEED
@@ -779,14 +797,7 @@
       width: 100%;
     }
 
-    /* Instagram embed area */
-    #instagram-embed-container {
-      width: 100%;
-      height: 100%;
-      min-height: 400px;
-    }
-
-    /* Twitter embed area */
+    #instagram-embed-container,
     #twitter-embed-container {
       width: 100%;
       min-height: 400px;
@@ -806,7 +817,6 @@
       gap: clamp(40px, 6vw, 100px);
     }
 
-    .contact-info {}
     .contact-info p {
       color: var(--text-muted);
       line-height: 1.85;
@@ -845,10 +855,7 @@
     .social-icon-btn:hover::before { transform: scale(1.5); }
     .social-icon-btn i { position: relative; z-index: 1; }
 
-    /* Newsletter */
-    .newsletter-wrap {
-      margin-top: 2rem;
-    }
+    .newsletter-wrap { margin-top: 2rem; }
     .newsletter-label {
       font-size: 0.72rem;
       letter-spacing: 0.22em;
@@ -857,10 +864,7 @@
       display: block;
       margin-bottom: 12px;
     }
-    .newsletter-row {
-      display: flex;
-      gap: 0;
-    }
+    .newsletter-row { display: flex; gap: 0; }
     .newsletter-row input {
       flex: 1;
       padding: 14px 18px;
@@ -888,7 +892,6 @@
       white-space: nowrap;
     }
     .newsletter-row button:hover { background: var(--accent-2); color: #fff; }
-
     #newsletter-confirm {
       font-size: 0.82rem;
       color: var(--accent-1);
@@ -896,18 +899,8 @@
       display: none;
     }
 
-    /* Contact Form */
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
     .form-group label {
       font-size: 0.72rem;
       letter-spacing: 0.22em;
@@ -933,9 +926,7 @@
     .form-group input::placeholder,
     .form-group textarea::placeholder { color: var(--text-muted); }
     .form-group textarea { min-height: 140px; }
-
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
     .form-submit {
       align-self: flex-start;
       padding: 15px 48px;
@@ -951,7 +942,6 @@
       overflow: hidden;
     }
     .form-submit:hover { background: var(--accent-2); color: #fff; }
-
     .form-field-error {
       font-size: 0.73rem;
       color: #e05c5c;
@@ -960,7 +950,6 @@
     .form-group.has-error input,
     .form-group.has-error textarea { border-color: #e05c5c; }
     .form-group.has-error .form-field-error { display: block; }
-
     #form-thank-you {
       display: none;
       padding: 22px 26px;
@@ -1045,21 +1034,15 @@
     @media (max-width: 900px) {
       .nav-links { display: none; }
       #hamburger { display: flex; }
-
       .about-grid { grid-template-columns: 1fr; }
       .about-image-wrap { max-width: 420px; }
-
       .video-grid { grid-template-columns: 1fr; }
-
       .social-grid { grid-template-columns: 1fr; }
-
       .contact-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
-
       .stats-grid { grid-template-columns: repeat(3, 1fr); }
       .countdown-grid { gap: 24px; }
     }
-
     @media (max-width: 560px) {
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .footer-inner { flex-direction: column; text-align: center; }
@@ -1070,25 +1053,17 @@
 </head>
 <body>
 
-  <!-- ============================================================
-       LOADING SPINNER
-       ============================================================ -->
+  <!-- LOADING SPINNER -->
   <div id="loader" role="status" aria-label="Loading">
     <div class="loader-inner">
       <div class="loader-ring"></div>
-      <!-- TODO: Replace with your artist name -->
       <span class="loader-name">Prav TV</span>
     </div>
   </div>
 
-
-  <!-- ============================================================
-       NAVIGATION
-       ============================================================ -->
+  <!-- NAVIGATION -->
   <nav id="navbar" role="navigation" aria-label="Main navigation">
-    <!-- TODO: Replace with your artist name / logo -->
     <a href="#hero" class="nav-logo">Prav<span>.TV</span></a>
-
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#upcoming">Upcoming</a></li>
@@ -1096,7 +1071,6 @@
       <li><a href="#social">Social</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-
     <div class="nav-actions">
       <button id="theme-toggle" aria-label="Toggle dark/light mode">
         <i class="fa-solid fa-moon" id="theme-icon"></i>
@@ -1117,68 +1091,41 @@
     <a href="#contact">Contact</a>
   </nav>
 
-
-  <!-- ============================================================
-       HERO SECTION
-       ============================================================ -->
+  <!-- HERO -->
   <section id="hero" aria-label="Hero">
-    <!-- TODO: Replace the background URL in CSS .hero-bg (search for "hero-bg") -->
     <div class="hero-bg" role="img" aria-label="Artist hero background"></div>
     <div class="hero-overlay"></div>
     <div class="hero-grain"></div>
-
     <div class="hero-content">
-      <!-- TODO: Replace with your genre/category -->
       <p class="hero-eyebrow">Singer · Songwriter · Performer</p>
-
-      <!-- TODO: Replace with your name -->
       <h1 class="hero-name">
         Prav<br/>
         <span class="line2">TV</span>
       </h1>
-
-      <!-- TODO: Replace with your tagline / mission statement -->
       <p class="hero-tagline">
         Crafting sounds that blur the line between memory and dream.
         Where soul meets silence.
       </p>
-
       <a href="#about" class="hero-cta">
         <span>Discover My World</span>
         <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
-
     <a href="#about" class="scroll-arrow" aria-label="Scroll to about section">
       <i class="fa-solid fa-chevron-down"></i>
     </a>
   </section>
 
-
-  <!-- ============================================================
-       ABOUT SECTION
-       ============================================================ -->
+  <!-- ABOUT -->
   <section id="about" aria-label="About me">
     <div class="container">
       <div class="about-grid">
-
-        <!-- Photo -->
         <div class="about-image-wrap reveal">
-          <!-- TODO: Replace with your actual photo URL -->
-          <img
-            src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80"
-            alt="Artist portrait"
-            loading="lazy"
-          />
+          <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80" alt="Artist portrait" loading="lazy" />
         </div>
-
-        <!-- Content -->
         <div class="about-content">
           <span class="section-label reveal">About Me</span>
-          <!-- TODO: Replace with your name -->
           <h2 class="section-title reveal delay-1">The Story <em>Behind</em><br/>The Music</h2>
-
-          <!-- TODO: Replace with your actual bio -->
           <p class="about-bio reveal delay-2">
             Born between two worlds and raised on raw emotion, I've spent the last decade
             turning life's contradictions into music people feel in their chest. My sound
@@ -1190,60 +1137,48 @@
             with artists I once had on my bedroom wall as a teenager. None of that matters
             as much as what happens when the lights go low and the first chord rings out.
           </p>
-
-          <!-- Stats -->
           <div class="stats-grid">
             <div class="stat-card reveal delay-1">
               <div class="stat-icon"><i class="fa-solid fa-music"></i></div>
-              <!-- TODO: Replace with your real numbers -->
               <span class="stat-number" data-target="3">0</span>
               <span class="stat-label">Albums</span>
             </div>
             <div class="stat-card reveal delay-2">
               <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
-              <!-- TODO: Replace with your real follower count (in thousands) -->
               <span class="stat-number" data-target="840" data-suffix="K">0</span>
               <span class="stat-label">Followers</span>
             </div>
             <div class="stat-card reveal delay-3">
               <div class="stat-icon"><i class="fa-solid fa-earth-americas"></i></div>
-              <!-- TODO: Replace with countries toured -->
               <span class="stat-number" data-target="28">0</span>
               <span class="stat-label">Countries</span>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-
-  <!-- ============================================================
-       UPCOMING RELEASE / COUNTDOWN (NEW SECTION)
-       ============================================================ -->
+  <!-- UPCOMING COUNTDOWN -->
   <section id="upcoming" aria-label="Upcoming release countdown">
     <div class="upcoming-bg-texture"></div>
     <div class="container upcoming-content">
       <span class="section-label reveal">Coming Soon</span>
       <h2 class="section-title reveal delay-1" style="text-align:center;">Next <em>Drop</em></h2>
-
-      <!-- TODO: Replace with your upcoming video title -->
       <p class="countdown-subtitle reveal delay-2">
         “Ma Maya Garchu Timi Lai” – Official Music Video
       </p>
-
       <div class="countdown-grid reveal delay-2" id="countdown">
         <div class="countdown-item">
-          <span class="countdown-digit" id="cd-hours">2</span>
+          <span class="countdown-digit" id="cd-days">00</span>
           <span class="countdown-label">Days</span>
         </div>
         <div class="countdown-item">
-          <span class="countdown-digit" id="cd-hours">09</span>
+          <span class="countdown-digit" id="cd-hours">00</span>
           <span class="countdown-label">Hours</span>
         </div>
         <div class="countdown-item">
-          <span class="countdown-digit" id="cd-minutes">05</span>
+          <span class="countdown-digit" id="cd-minutes">00</span>
           <span class="countdown-label">Minutes</span>
         </div>
         <div class="countdown-item">
@@ -1251,242 +1186,118 @@
           <span class="countdown-label">Seconds</span>
         </div>
       </div>
-
-      <!-- TODO: Replace the date below (YYYY-MM-DDTHH:MM:SS) with your actual release time -->
       <p class="countdown-note reveal delay-3">
         Set a reminder &nbsp;·&nbsp; 
         <span style="color:var(--accent-1);">
-          <!-- You can also replace this with a link to a YouTube Premiere or event page -->
           Premieres 07 May 2026, 23:59 UTC
         </span>
       </p>
     </div>
   </section>
 
-
-  <!-- ============================================================
-       VIDEO SHOWCASE
-       ============================================================ -->
+  <!-- VIDEO SHOWCASE (DYNAMIC) -->
   <section id="videos" aria-label="Video showcase">
     <div class="container">
+      <span class="section-label reveal">Watch</span>
+      <h2 class="section-title reveal delay-1">Video <em>Showcase</em></h2>
 
-      <div class="section-header">
-        <div>
-          <span class="section-label reveal">Watch</span>
-          <h2 class="section-title reveal delay-1">Video <em>Showcase</em></h2>
+      <!-- YOUTUBE -->
+      <div class="platform-section">
+        <div class="platform-header">
+          <i class="fa-brands fa-youtube"></i>
+          <span>YouTube</span>
         </div>
-        <!-- TODO: Update this link to your YouTube channel -->
-        <a href="https://youtube.com/imksav" target="_blank" rel="noopener noreferrer"
-           style="font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:8px;transition:color 0.3s"
-           onmouseover="this.style.color='var(--accent-1)'" onmouseout="this.style.color='var(--text-muted)'">
-          View Channel <i class="fa-solid fa-arrow-right"></i>
-        </a>
+        <div class="video-grid" id="video-grid-youtube"></div>
+        <button class="load-more-btn platform-load-more" data-platform="youtube" style="display:none;">
+          <i class="fa-solid fa-plus"></i> Load More YouTube Videos
+        </button>
       </div>
 
-      <div class="video-grid" id="video-grid">
+      <!-- TIKTOK -->
+      <div class="platform-section">
+        <div class="platform-header">
+          <i class="fa-brands fa-tiktok"></i>
+          <span>TikTok</span>
+        </div>
+        <div class="video-grid" id="video-grid-tiktok"></div>
+        <button class="load-more-btn platform-load-more" data-platform="tiktok" style="display:none;">
+          <i class="fa-solid fa-plus"></i> Load More TikToks
+        </button>
+      </div>
 
-        <!-- VIDEO 1 -->
-        <!-- TODO: Replace "dQw4w9WgXcQ" with your YouTube video ID -->
-        <article class="video-card reveal">
-          <div class="video-embed-wrap">
-            <iframe
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
-              title="Video 1 – TODO: Replace with your video title"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="video-info">
-            <!-- TODO: Replace with your video title -->
-            <span class="video-title">Song Title — Official Video</span>
-            <!-- TODO: Replace with video release date -->
-            <span class="video-date">2024</span>
-          </div>
-        </article>
-
-        <!-- VIDEO 2 -->
-        <!-- TODO: Replace "dQw4w9WgXcQ" with your YouTube video ID -->
-        <article class="video-card reveal delay-1">
-          <div class="video-embed-wrap">
-            <iframe
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
-              title="Video 2 – TODO: Replace with your video title"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="video-info">
-            <!-- TODO: Replace with your video title -->
-            <span class="video-title">Live Session at Studio X</span>
-            <!-- TODO: Replace with video release date -->
-            <span class="video-date">2024</span>
-          </div>
-        </article>
-
-        <!-- VIDEO 3 (hidden — revealed by "Load More") -->
-        <!-- TODO: Replace "dQw4w9WgXcQ" with your YouTube video ID -->
-        <article class="video-card hidden reveal delay-2">
-          <div class="video-embed-wrap">
-            <iframe
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
-              title="Video 3 – TODO: Replace with your video title"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="video-info">
-            <!-- TODO: Replace with your video title -->
-            <span class="video-title">Acoustic Performance — Behind The Scenes</span>
-            <!-- TODO: Replace with video release date -->
-            <span class="video-date">2023</span>
-          </div>
-        </article>
-
-        <!-- VIDEO 4 (hidden — revealed by "Load More") -->
-        <!-- TODO: Replace "dQw4w9WgXcQ" with your YouTube video ID -->
-        <article class="video-card hidden reveal delay-3">
-          <div class="video-embed-wrap">
-            <iframe
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
-              title="Video 4 – TODO: Replace with your video title"
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="video-info">
-            <!-- TODO: Replace with your video title -->
-            <span class="video-title">Debut Album — Full Release Documentary</span>
-            <!-- TODO: Replace with video release date -->
-            <span class="video-date">2023</span>
-          </div>
-        </article>
-
-      </div><!-- /.video-grid -->
-
-      <button id="load-more-btn" aria-label="Load more videos">
-        <i class="fa-solid fa-plus"></i>
-        <span>Load More Videos</span>
-      </button>
-
+      <!-- INSTAGRAM -->
+      <div class="platform-section">
+        <div class="platform-header">
+          <i class="fa-brands fa-instagram"></i>
+          <span>Instagram</span>
+        </div>
+        <div class="video-grid" id="video-grid-instagram"></div>
+        <button class="load-more-btn platform-load-more" data-platform="instagram" style="display:none;">
+          <i class="fa-solid fa-plus"></i> Load More Instagram Posts
+        </button>
+      </div>
     </div>
   </section>
 
-
-  <!-- ============================================================
-       SOCIAL MEDIA FEED
-       ============================================================ -->
+  <!-- SOCIAL MEDIA FEED -->
   <section id="social" aria-label="Social media feeds">
     <div class="container">
-
       <span class="section-label reveal">Follow Along</span>
       <h2 class="section-title reveal delay-1">Latest <em>From</em> The Feed</h2>
-
       <div class="social-grid">
-
-        <!-- INSTAGRAM COLUMN -->
+        <!-- Instagram -->
         <div class="social-feed-col reveal">
           <div class="feed-header">
             <i class="fa-brands fa-instagram"></i>
             <span>Instagram</span>
           </div>
           <div class="feed-body">
-            <!-- =====================================================
-                 TODO: INSTAGRAM EMBED
-                 Option A (Recommended – LightWidget):
-                   1. Go to https://lightwidget.com
-                   2. Connect your Instagram & generate a widget
-                   3. Copy the <script> + <iframe> code they give you
-                   4. Replace the placeholder <div> below with that code
-
-                 Option B (Elfsight):
-                   1. Go to https://elfsight.com/instagram-feed-widget/
-                   2. Create a widget & copy the embed script
-                   3. Replace the placeholder below with your embed snippet
-
-                 Option C (Manual – paste embed post by post):
-                   Use Instagram's own embed option on each post:
-                   Click "…" on a post → Embed → copy code
-                 ===================================================== -->
             <div id="instagram-embed-container">
               <div class="feed-placeholder">
                 <i class="fa-brands fa-instagram"></i>
                 <p>Loading social posts…</p>
                 <p style="font-size:0.78rem;color:var(--text-muted)">
-                  Replace this block with your Instagram widget code.<br/>
-                  See the HTML comment above for instructions.
+                  Replace this block with your Instagram widget code.
                 </p>
                 <code><!-- TODO: Paste Instagram embed code here --></code>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- TWITTER/X COLUMN -->
+        <!-- Twitter -->
         <div class="social-feed-col reveal delay-1">
           <div class="feed-header">
             <i class="fa-brands fa-x-twitter"></i>
             <span>Twitter / X</span>
           </div>
           <div class="feed-body">
-            <!-- =====================================================
-                 TODO: TWITTER / X TIMELINE EMBED
-                   1. Go to https://publish.twitter.com
-                   2. Paste your profile URL (e.g. https://twitter.com/yourusername)
-                   3. Choose "Embedded Timeline"
-                   4. Click "Copy Code"
-                   5. Replace the placeholder <div> below with that code
-                      It will look something like:
-                      <a class="twitter-timeline" href="https://twitter.com/yourusername">
-                        Tweets by yourusername
-                      </a>
-                      <script async src="https://platform.twitter.com/widgets.js"></script>
-
-                 NOTE: The Twitter script lazy-loads so it won't slow the page.
-                 ===================================================== -->
             <div id="twitter-embed-container">
               <div class="feed-placeholder">
                 <i class="fa-brands fa-x-twitter"></i>
                 <p>Loading social posts…</p>
                 <p style="font-size:0.78rem;color:var(--text-muted)">
-                  Replace this block with your Twitter timeline embed code.<br/>
-                  Get it free at publish.twitter.com
+                  Replace this block with your Twitter timeline embed code.
                 </p>
                 <code><!-- TODO: Paste Twitter timeline code here --></code>
               </div>
             </div>
           </div>
         </div>
-
-      </div><!-- /.social-grid -->
+      </div>
     </div>
   </section>
 
-
-  <!-- ============================================================
-       CONTACT / BOOKING
-       ============================================================ -->
+  <!-- CONTACT -->
   <section id="contact" aria-label="Contact and booking">
     <div class="container">
-
       <div class="contact-grid">
-
-        <!-- Left column: info + social icons + newsletter -->
         <div class="contact-info">
           <span class="section-label reveal">Get In Touch</span>
           <h2 class="section-title reveal delay-1">Bookings &amp;<br/><em>Collabs</em></h2>
-
-          <!-- TODO: Replace with your contact info paragraph -->
           <p class="reveal delay-2">
             Available for live performances, brand partnerships, studio sessions,
-            and creative collaborations. Fill in the form or reach out directly
-            through any of the channels below.
+            and creative collaborations.
           </p>
-
-          <!-- TODO: Replace each href="#" with your actual social profile URLs -->
           <div class="social-icons reveal delay-2">
             <a href="#" class="social-icon-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
               <i class="fa-brands fa-instagram"></i>
@@ -1504,8 +1315,6 @@
               <i class="fa-brands fa-spotify"></i>
             </a>
           </div>
-
-          <!-- Newsletter -->
           <div class="newsletter-wrap reveal delay-3">
             <span class="newsletter-label">Join the Inner Circle</span>
             <div class="newsletter-row">
@@ -1518,11 +1327,8 @@
             </p>
           </div>
         </div>
-
-        <!-- Right column: contact form -->
         <div>
           <form class="contact-form reveal" id="contact-form" novalidate>
-
             <div class="form-row">
               <div class="form-group" id="fg-name">
                 <label for="contact-name">Name</label>
@@ -1535,42 +1341,33 @@
                 <span class="form-field-error">Please enter a valid email.</span>
               </div>
             </div>
-
             <div class="form-group" id="fg-subject">
               <label for="contact-subject">Subject</label>
               <input type="text" id="contact-subject" name="subject" placeholder="Booking / Collaboration / Press…" />
               <span class="form-field-error">Please enter a subject.</span>
             </div>
-
             <div class="form-group" id="fg-message">
               <label for="contact-message">Message</label>
               <textarea id="contact-message" name="message" placeholder="Tell me about your project or inquiry…"></textarea>
               <span class="form-field-error">Please enter a message.</span>
             </div>
-
             <button type="submit" class="form-submit">
               Send Message <i class="fa-solid fa-paper-plane" style="margin-left:10px"></i>
             </button>
           </form>
-
           <div id="form-thank-you" role="alert">
             <h4>Message Received ✦</h4>
             <p>Thank you for reaching out! I'll get back to you within 48 hours.</p>
           </div>
         </div>
-
-      </div><!-- /.contact-grid -->
+      </div>
     </div>
   </section>
 
-
-  <!-- ============================================================
-       FOOTER
-       ============================================================ -->
+  <!-- FOOTER -->
   <footer id="footer">
     <div class="container">
       <div class="footer-inner">
-        <!-- TODO: Replace with your artist name -->
         <span class="footer-logo">Prav TV</span>
         <p class="footer-copy">
           &copy; <span id="copy-year"></span> Prav TV. All rights reserved.
@@ -1584,58 +1381,223 @@
     <i class="fa-solid fa-arrow-up"></i>
   </button>
 
+  <!-- TikTok & Instagram embed scripts -->
+  <script async src="https://www.tiktok.com/embed.js"></script>
+  <script async src="https://www.instagram.com/embed.js"></script>
 
-  <!-- ============================================================
-       JAVASCRIPT
-       ============================================================ -->
   <script>
     'use strict';
 
     /* ============================================================
-       LOADER
+       VIDEO LISTS (EDIT THESE ARRAYS WITH YOUR LINKS)
+       ============================================================ */
+    const youtubeVideos = [
+      {
+        id: 'ZERXHy_XbBg',        // YouTube video ID (from ?v=)
+        title: 'Official Music Video',
+        date: '2025'
+      }
+      // Add more objects: { id: 'VIDEO_ID', title: '...', date: '...' }
+    ];
+
+    const tiktokVideos = [
+      {
+        url: 'https://www.tiktok.com/@imksav.py/video/7630855700725419286',
+        title: 'Vibe Check',
+        date: '2025'
+      }
+      // Add more: { url: 'https://www.tiktok.com/@user/video/...', title: '...', date: '...' }
+    ];
+
+    const instagramPosts = [
+      {
+        url: 'https://www.instagram.com/imksav/',   // currently profile link; replace with post URLs like https://www.instagram.com/p/.../
+        title: 'Latest Post',
+        date: '2025'
+      }
+      // Add more: { url: 'https://www.instagram.com/p/YYY/', title: '...', date: '...' }
+    ];
+
+    /* ============================================================
+       RENDER FUNCTIONS
+       ============================================================ */
+    function createYouTubeCard(video) {
+      const article = document.createElement('article');
+      article.className = 'video-card reveal';
+      article.innerHTML = `
+        <div class="video-embed-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/${video.id}?rel=0&modestbranding=1"
+            title="${video.title}"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="video-info">
+          <span class="video-title">${video.title}</span>
+          <span class="video-date">${video.date}</span>
+        </div>
+      `;
+      return article;
+    }
+
+    function createTikTokCard(video) {
+      const article = document.createElement('article');
+      article.className = 'video-card reveal';
+      // Extract video ID from URL for data-video-id
+      const videoId = video.url.split('/video/')[1]?.split('?')[0] || '';
+      article.innerHTML = `
+        <div class="video-embed-wrap tiktok-embed-wrap">
+          <blockquote class="tiktok-embed" cite="${video.url}" data-video-id="${videoId}" style="max-width:100%; min-width:325px;">
+            <section></section>
+          </blockquote>
+        </div>
+        <div class="video-info">
+          <span class="video-title">${video.title}</span>
+          <span class="video-date">${video.date}</span>
+        </div>
+      `;
+      return article;
+    }
+
+    function createInstagramCard(post) {
+      const article = document.createElement('article');
+      article.className = 'video-card reveal';
+      article.innerHTML = `
+        <div class="video-embed-wrap instagram-embed-wrap">
+          <blockquote class="instagram-media" data-instgrm-permalink="${post.url}" data-instgrm-version="14" style="max-width:100%; min-width:326px; padding:0; width:100%;">
+            <a href="${post.url}" target="_blank">View this post on Instagram</a>
+          </blockquote>
+        </div>
+        <div class="video-info">
+          <span class="video-title">${post.title}</span>
+          <span class="video-date">${post.date}</span>
+        </div>
+      `;
+      return article;
+    }
+
+    /* ============================================================
+       LOAD PLATFORM
+       ============================================================ */
+    function loadPlatform(platform) {
+      let gridId, items, createFn;
+      if (platform === 'youtube') {
+        gridId = 'video-grid-youtube';
+        items = youtubeVideos;
+        createFn = createYouTubeCard;
+      } else if (platform === 'tiktok') {
+        gridId = 'video-grid-tiktok';
+        items = tiktokVideos;
+        createFn = createTikTokCard;
+      } else if (platform === 'instagram') {
+        gridId = 'video-grid-instagram';
+        items = instagramPosts;
+        createFn = createInstagramCard;
+      } else return;
+
+      const grid = document.getElementById(gridId);
+      const loadMoreBtn = document.querySelector(`.platform-load-more[data-platform="${platform}"]`);
+
+      grid.innerHTML = '';
+      const initialCount = 4;
+      const visibleItems = items.slice(0, initialCount);
+      const hiddenItems = items.slice(initialCount);
+
+      visibleItems.forEach((item, idx) => {
+        const card = createFn(item);
+        card.classList.add(idx === 0 ? 'reveal' : `reveal delay-${Math.min(idx, 3)}`);
+        grid.appendChild(card);
+      });
+
+      grid.dataset.hiddenItems = JSON.stringify(hiddenItems);
+      grid.dataset.createFn = platform;
+
+      if (hiddenItems.length > 0) {
+        loadMoreBtn.style.display = 'flex';
+      } else {
+        loadMoreBtn.style.display = 'none';
+      }
+
+      // Activate embed scripts
+      if (platform === 'tiktok' && window.tiktokEmbed?.load) {
+        window.tiktokEmbed.load();
+      } else if (platform === 'instagram' && window.instgrm?.Embeds?.process) {
+        window.instgrm.Embeds.process();
+      }
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    }
+
+    /* Load More buttons */
+    document.querySelectorAll('.platform-load-more').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const platform = btn.dataset.platform;
+        const gridId = platform === 'youtube' ? 'video-grid-youtube'
+                     : platform === 'tiktok' ? 'video-grid-tiktok'
+                     : 'video-grid-instagram';
+        const grid = document.getElementById(gridId);
+        const hiddenItems = JSON.parse(grid.dataset.hiddenItems || '[]');
+        const createFn = platform === 'youtube' ? createYouTubeCard
+                       : platform === 'tiktok' ? createTikTokCard
+                       : createInstagramCard;
+
+        hiddenItems.forEach((item, idx) => {
+          const card = createFn(item);
+          card.classList.add('reveal', `delay-${idx % 4}`);
+          grid.appendChild(card);
+        });
+
+        grid.dataset.hiddenItems = '[]';
+        btn.style.display = 'none';
+
+        if (platform === 'tiktok' && window.tiktokEmbed?.load) window.tiktokEmbed.load();
+        if (platform === 'instagram' && window.instgrm?.Embeds?.process) window.instgrm.Embeds.process();
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+      });
+    });
+
+    // Load all platforms on start
+    window.addEventListener('load', () => {
+      loadPlatform('youtube');
+      loadPlatform('tiktok');
+      loadPlatform('instagram');
+    });
+
+    /* ============================================================
+       LOADER, THEME, NAVBAR, SCROLL REVEAL, COUNTERS, COUNTDOWN,
+       CONTACT FORM, NEWSLETTER (ALL EXISTING SCRIPTS BELOW)
        ============================================================ */
     window.addEventListener('load', () => {
       const loader = document.getElementById('loader');
       setTimeout(() => loader.classList.add('hidden'), 500);
     });
 
-    /* ============================================================
-       THEME TOGGLE (persists via localStorage)
-       ============================================================ */
-    const html        = document.documentElement;
+    const html = document.documentElement;
     const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon   = document.getElementById('theme-icon');
-
+    const themeIcon = document.getElementById('theme-icon');
     const applyTheme = (theme) => {
       html.setAttribute('data-theme', theme);
       themeIcon.className = theme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
       localStorage.setItem('artist-theme', theme);
     };
-
-    // Apply saved theme on load
     const savedTheme = localStorage.getItem('artist-theme') || 'dark';
     applyTheme(savedTheme);
-
     themeToggle.addEventListener('click', () => {
       const current = html.getAttribute('data-theme');
       applyTheme(current === 'dark' ? 'light' : 'dark');
     });
 
-    /* ============================================================
-       NAVBAR – scroll effect
-       ============================================================ */
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
 
-    /* ============================================================
-       MOBILE MENU
-       ============================================================ */
     const hamburger  = document.getElementById('hamburger');
     const mobileNav  = document.getElementById('mobile-nav');
     const navOverlay = document.getElementById('nav-overlay');
-
     const toggleMenu = (open) => {
       hamburger.classList.toggle('open', open);
       hamburger.setAttribute('aria-expanded', open);
@@ -1643,18 +1605,12 @@
       navOverlay.classList.toggle('active', open);
       document.body.style.overflow = open ? 'hidden' : '';
     };
-
     hamburger.addEventListener('click',  () => toggleMenu(!mobileNav.classList.contains('open')));
     navOverlay.addEventListener('click', () => toggleMenu(false));
-
-    // Close on nav link click
     mobileNav.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => toggleMenu(false));
     });
 
-    /* ============================================================
-       SMOOTH SCROLL for anchor links
-       ============================================================ */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', (e) => {
         const target = document.querySelector(anchor.getAttribute('href'));
@@ -1664,9 +1620,6 @@
       });
     });
 
-    /* ============================================================
-       SCROLL REVEAL
-       ============================================================ */
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1675,12 +1628,8 @@
         }
       });
     }, { threshold: 0.12 });
-
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    /* ============================================================
-       NUMBER COUNTER ANIMATION
-       ============================================================ */
     const counterObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
@@ -1689,47 +1638,35 @@
         const suffix = el.dataset.suffix || '';
         const duration = 1600;
         const start  = performance.now();
-
         const tick = (now) => {
           const elapsed  = now - start;
           const progress = Math.min(elapsed / duration, 1);
-          // easeOutExpo
           const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
           el.textContent = Math.floor(ease * target) + suffix;
           if (progress < 1) requestAnimationFrame(tick);
         };
-
         requestAnimationFrame(tick);
         counterObserver.unobserve(el);
       });
     }, { threshold: 0.5 });
-
     document.querySelectorAll('.stat-number[data-target]').forEach(el => counterObserver.observe(el));
 
-    /* ============================================================
-       UPCOMING RELEASE COUNTDOWN
-       ============================================================ */
-    // TODO: Replace this date with your actual release time (UTC)
+    // Countdown
     const targetDate = new Date('2026-05-07T23:59:59Z').getTime();
-
     const cdDays    = document.getElementById('cd-days');
     const cdHours   = document.getElementById('cd-hours');
     const cdMinutes = document.getElementById('cd-minutes');
     const cdSeconds = document.getElementById('cd-seconds');
-
     function updateCountdown() {
       const now   = Date.now();
       let diff    = targetDate - now;
-
       if (diff <= 0) {
-        // Timer expired – show zeros or a custom message
         cdDays.textContent    = '00';
         cdHours.textContent   = '00';
         cdMinutes.textContent = '00';
         cdSeconds.textContent = '00';
         return;
       }
-
       const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
       diff         -= days * 1000 * 60 * 60 * 24;
       const hours   = Math.floor(diff / (1000 * 60 * 60));
@@ -1737,56 +1674,28 @@
       const minutes = Math.floor(diff / (1000 * 60));
       diff         -= minutes * 1000 * 60;
       const seconds = Math.floor(diff / 1000);
-
       cdDays.textContent    = String(days).padStart(2, '0');
       cdHours.textContent   = String(hours).padStart(2, '0');
       cdMinutes.textContent = String(minutes).padStart(2, '0');
       cdSeconds.textContent = String(seconds).padStart(2, '0');
     }
-
-    // Run immediately and then every second
     updateCountdown();
-    const countdownInterval = setInterval(updateCountdown, 1000);
+    setInterval(updateCountdown, 1000);
 
-    /* ============================================================
-       VIDEO LOAD MORE
-       ============================================================ */
-    const loadMoreBtn   = document.getElementById('load-more-btn');
-    const hiddenVideos  = document.querySelectorAll('.video-card.hidden');
-
-    loadMoreBtn.addEventListener('click', () => {
-      hiddenVideos.forEach(card => {
-        card.classList.remove('hidden');
-        // Trigger reveal animation
-        setTimeout(() => revealObserver.observe(card), 20);
-      });
-      loadMoreBtn.style.display = 'none';
-    });
-
-    /* ============================================================
-       BACK TO TOP
-       ============================================================ */
+    // Back to top
     const backToTop = document.getElementById('back-to-top');
-
     window.addEventListener('scroll', () => {
       backToTop.classList.toggle('visible', window.scrollY > 500);
     }, { passive: true });
-
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    /* ============================================================
-       FOOTER COPYRIGHT YEAR (auto-updates)
-       ============================================================ */
     document.getElementById('copy-year').textContent = new Date().getFullYear();
 
-    /* ============================================================
-       CONTACT FORM VALIDATION
-       ============================================================ */
+    // Contact form validation
     const contactForm  = document.getElementById('contact-form');
     const thankYouMsg  = document.getElementById('form-thank-you');
-
     const validate = (id, groupId, testFn) => {
       const el    = document.getElementById(id);
       const group = document.getElementById(groupId);
@@ -1794,33 +1703,25 @@
       group.classList.toggle('has-error', !valid);
       return valid;
     };
-
     const isEmail = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
-
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-
       const ok = [
         validate('contact-name',    'fg-name',    v => v.length > 1),
         validate('contact-email',   'fg-email',   v => isEmail(v)),
         validate('contact-subject', 'fg-subject', v => v.length > 1),
         validate('contact-message', 'fg-message', v => v.length > 10),
       ].every(Boolean);
-
       if (!ok) return;
-
       contactForm.style.display    = 'none';
       thankYouMsg.style.display    = 'block';
       thankYouMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
 
-    /* ============================================================
-       NEWSLETTER SUBSCRIPTION
-       ============================================================ */
+    // Newsletter
     document.getElementById('newsletter-submit').addEventListener('click', () => {
       const emailEl  = document.getElementById('newsletter-email');
       const confirm  = document.getElementById('newsletter-confirm');
-
       if (!isEmail(emailEl.value.trim())) {
         emailEl.style.borderColor = '#e05c5c';
         return;
@@ -1831,8 +1732,6 @@
       emailEl.disabled = true;
       document.getElementById('newsletter-submit').disabled = true;
     });
-
   </script>
-
 </body>
 </html>
